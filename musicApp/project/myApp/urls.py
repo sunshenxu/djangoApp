@@ -6,5 +6,8 @@ __author__ = 'shenxu'
 from django.conf.urls import url
 from . import views
 urlpatterns = [
-    url(r'^$', views.index),
+    url(r'^index/$', views.index),
+    url(r'^login/$',views.login,name='login'),
+    url(r'^resign/$',views.resign,name='resign'),
+    url(r'^logout/$',views.out,name='logout'),
 ]

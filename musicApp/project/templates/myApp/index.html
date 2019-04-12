@@ -5,6 +5,10 @@
     <title>主页</title>
 </head>
 <body>
-<p>主页</p>
+用户名：{{ title }} <br>
+<a href="{% url 'app:resign' %}">注册</a>
+<br>
+<a href="{% url 'app:login' %}">登录</a>
+<a href="/logout/">退出登录</a>
 </body>
 </html>

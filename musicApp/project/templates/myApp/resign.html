@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+<a href="/index/">返回</a> <br>
+<form action="/resign/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    昵称：<input type="text" name="userName"> <br>
+    账号：<input type="text" name="userId"> <br>
+    密码：<input type="password" name="userPwd"> <br>
+    再次输入密码：<input type="password" name="userpwds"> <br>
+    上传头像：<input type="file" name="userImg"> <br>
+    <input type="submit" value="注册">
+</form>
+</body>
+</html>
