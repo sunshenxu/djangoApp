@@ -15,8 +15,8 @@ def login(request):
     if request.method == 'POST':
         try:
             userId = request.POST.get('userId')
-            if request.POST.get('passwd') == User.objects.get(userId=userId).userPwd:
-                request.session['username'] = User.objects.get(userId=userId).userName
+            if request.POST.get('passwd') == User.userobj.get(userId=userId).userPwd:
+                request.session['username'] = User.userobj.get(userId=userId).userName
                 request.session['token'] = str(time.time() + random.randrange(0,100000))
                 return redirect('/index/')
             else:
@@ -39,8 +39,8 @@ def resign(request):
             for data in f.chunks():
                 fp.write(data)
         userToken = str(time.time() + random.randrange(0,100000))
-        user = User.createUser(userId,userName,userPwd,userImg,userToken,userRank)
-        # user.save()
+        user = User.userobj.createUser(userId,userName,userPwd,userImg,userToken,userRank)
+        user.save()
         request.session['username'] = userName
         request.session['token'] = userToken
         return redirect('/index/')
