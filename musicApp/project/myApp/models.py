@@ -27,3 +27,17 @@ class User(models.Model):
     # def createUser(cls,userId,userName,userPwd,userImg,userToken,userRank):
     #     user = cls(userId,userName,userPwd,userImg,userToken,userRank)
     #     return user
+
+
+class Musci(models.Model):
+    musicId = models.CharField(max_length=30,unique=True)
+    musicName = models.CharField(max_length=30)
+    musicTime = models.CharField(max_length=20)
+    musicOuther = models.CharField(max_length=30)
+    # lyricContent = models.CharField(max_length=400)
+    lyricContent = models.TextField()
+    musicImg = models.CharField(max_length=30)
+
+
+    class Meta:
+        db_table = 'music'

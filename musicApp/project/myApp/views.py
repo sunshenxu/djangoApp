@@ -49,4 +49,4 @@ def resign(request):
 
 def out(request):
     logout(request)
-    return render(request,'myApp/index.html')
+    return redirect('/index/')
