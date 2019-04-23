@@ -20,9 +20,9 @@ def login(request):
                 request.session['token'] = str(time.time() + random.randrange(0,100000))
                 return redirect('/index/')
             else:
-                return HttpResponse("密码错误")
+                return JsonResponse({"status":"pwdError"})
         except User.DoesNotExist as e:
-            return HttpResponse("账号不存在")
+            return JsonResponse({"status":"idNot"})
     else:
         return render(request,'myApp/login.html')
 

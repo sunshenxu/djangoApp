@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>登录</title>
-</head>
-<body>
-<a href="/index/">返回</a> <br>
-<form action="/login/" method="post">
-    {% csrf_token %}
-    用户名：<input type="text" name="userId"> <br>
-    密码：<input type="password" name="passwd"> <br>
-    <input type="submit" value="登录"> <br>
-</form>
-</body>
+<html>
+	<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>登录</title>
+        {% load static from staticfiles %}
+<script src="{% static 'myApp/js/jquery-3.1.1.min.js'%}" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'myApp/css/login.css'%}"/>
+	</head>
+	<body>
+		<a href="/index/">返回</a> <br>
+		<form action="/login/" method="post">
+			{% csrf_token %}
+			<div id="register" class="t_register clearfix">
+			<div class="form-wrapper register-wrapper">
+				<p class="tpass-form-item">
+					<label class="tpass-label tpass-label-phone">账号</label>
+					<input type="text" id="id" name="userId" class="tpass-text-input" placeholder="请输入你的账号" autocomplete="off" maxlength="12">
+					<span class="tpass-item-error tpass-item-error-phone" id="checkId">6-12位账号</span>
+				</p>
+				<p class="tpass-form-item">
+					<label class="tpass-label tpass-label-password">密码</label>
+					<input type="password" id="pwd" name="passwd" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off">
+					<span class="tpass-item-error tpass-item-error-password" id="checkPwd">6-16位密码</span>
+				</p>
+				<p class="tpass-form-item tpass-form-item-submit">
+					<input type="submit"  value="登录" class="tpass-button tpass-button-submit">
+				</p>
+			</div>
+		</div>
+		</form>
+
+	</body>
+	<script src="{% static 'myApp/js/login.js' %}" type="text/javascript" charset="utf-8"></script>
+
 </html>

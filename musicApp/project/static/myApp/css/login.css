@@ -1,0 +1,90 @@
+@charset "utf-8";html{color:#333;font:12px/20px Arial}
+body,ul,ol,li,dl,dd,h1,h2,h3,h4,h5,h6,figure,form,fieldset,legend,input,textarea,button,p,blockquote,th,td,pre,xmp{margin:0;padding:0}
+body,input,textarea,button,select,pre,tt,code,kbd,samp,optgroup,option{font:12px/1.5 tahoma,arial,"Hiragino Sans GB","Microsoft YaHei","微软雅黑",sans-serif,Arial,Verdana,"宋体"}
+::-webkit-input-placeholder{color:#c7ced4}
+:-moz-placeholder{color:#c7ced4}
+::-moz-placeholder{color:#c7ced4}
+:-ms-input-placeholder{color:#c7ced4}
+input.error{box-shadow:0 0 2px #ff4500}
+table{border-collapse:collapse;border-spacing:0;text-align:left}
+caption,th{text-align:inherit}
+ul,ol,li,menu{list-style:none}
+fieldset,img{border:0 none}
+img,object,input,textarea,button,select{vertical-align:top}
+article,aside,footer,header,section,nav,figure,figcaption,hgroup,details,menu{display:block}
+audio,canvas,video{display:block;*display:inline;*zoom:1}
+h1,h2,h3,h4,h5,h6,input,textarea,button,select,small{font-size:100%}
+address,cite,dfn,em,i,optgroup,var{font-style:normal}
+blockquote:before,blockquote:after,q:before,q:after{content:'\0020'}
+textarea{overflow:auto}
+textarea,input{outline:0}
+mark{background-color:#ffc40d}
+ins,s,u,del{text-decoration:none}
+a{color:#000;text-decoration:none}
+body{margin:0 auto}
+.rmb{font-weight:normal;font-size:12px;font-family:arial}
+.rmb:before{content:'¥';display:inline-block}
+.clear{clear:both;height:0;line-height:0}
+.clear:after{content:".";height:0;line-height:0;visibility:hidden;clear:both}
+.clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+.tpass-mask{position:fixed;width:100%;height:100%;background:#000;opacity:.5;filter:alpha(opacity=50);-ms-filter:"alpha(opacity=50)";top:0;left:0}
+.spn{position:absolute;font-size:14px;left:39px;top:10px;display:none;color:#c7ced4}
+.close-btn{width:18px;height:18px;background-position:0 0;background-image:url("//static4.qianqian.com/pc-tpass/img/icon_new.png");background-repeat:no-repeat;cursor:pointer;position:absolute;right:-36px;top:0}
+.ml_dialog{z-index:22;text-align:center;position:fixed;left:0;top:0;right:0;bottom:0}
+.ml_dialog .bg{position:fixed;top:0;bottom:0;left:0;right:0;filter:alpha(opacity=50);opacity:.5;width:100%;background:#000}
+.ml_dialog .popContent{font-size:14px;position:absolute;top:50%;left:50%;text-align:center;background-color:#fff;width:390px;min-height:100px}
+.ml_dialog .popContent .contentP{padding:30px;color:#999;vertical-align:top;word-break:break-all;word-wrap:break-word}
+.ml_dialog .popContent .btnArea{width:100%;height:50px;line-height:50px;overflow:hidden;border-top:1px solid #ddd;font-size:16px}
+.ml_dialog .popContent .btnArea .btn{display:inline-block;background-color:#fff;min-width:70px;height:100%;width:50%}
+.ml_dialog .popContent .btnArea .no{border-right:1px solid #ddd;margin-left:-1px}
+.ml_dialog .popContent .btnArea .yes{color:#d54545}
+.t_header{width:100%;background:url("//static2.qianqian.com/pc-tpass/img/head_line.png") no-repeat scroll center bottom transparent;font-size:14px}
+.t_header .content{color:#999;height:80px;line-height:80px;margin:0 auto;padding:0 20px;width:840px}
+.t_header .content .logo{float:left;font-size:18px;background:url("//static1.qianqian.com/pc-tpass/img/small_logo.png") no-repeat left center;text-indent:70px}
+.t_header .content .logo strong{color:#666}
+.t_header .content ul.nav{float:right}
+.t_header .content ul.nav li{display:inline-block;line-height:51px;font-family:"宋体";*display:inline;*zoom:1;*line-height:80px}
+.t_header .content ul.nav li label{margin-right:5px}
+.t_header .content ul.nav li a{color:#1b66c7;text-decoration:underline;font-size:14px}
+.t_header .content ul.nav li a:hover{color:#0af}
+.t_header .content ul.nav li em{display:inline-block;content:'　';width:1px;height:14px;border-right:1px solid #e7e7e7;position:relative;top:2px;margin:0 5px;*display:inline;*zoom:1;*padding-left:5px;*top:-11px}
+.t_header .content ul.nav li.ac{position:relative;top:4px;color:#666}
+.t_header .content ul.nav li.ac span.name{float:right;max-width:90px;overflow:hidden;height:50px;text-overflow:ellipsis;white-space:nowrap;margin-top:-5px;margin-left:5px}
+.t_header .content ul.nav li.ac img{width:42px;height:42px;border-radius:30px}
+.t_header .content ul.nav li.ac ul.acMenu{background:#fff;position:absolute;width:100px;border:1px solid #ddd;border-bottom:0 none;display:none;right:0;top:51px}
+.t_header .content ul.nav li.ac ul.acMenu li{display:block;height:30px;line-height:30px;text-align:center;border-bottom:1px solid #ddd}
+.t_header .content ul.nav li.ac ul.acMenu li a{color:#666;text-decoration:none}
+.t_header .content ul.nav li.ac ul.acMenu .arrow-up{position:absolute;top:-8px;left:50%;border:4px dashed transparent;display:inline-block;border-bottom-color:#fff;z-index:3;margin-left:-2px}
+.t_header .content ul.nav li.ac ul.acMenu .arrow-up-border{position:absolute;top:-12px;left:50%;border:6px dashed transparent;display:inline-block;border-bottom-color:#ddd;z-index:2;margin-left:-4px}
+.t_header .content ul.nav li.ac:hover ul.acMenu{display:block}
+.t_footer{background:url("//static4.qianqian.com/pc-tpass/img/icon15.png") repeat-x 0 0 transparent;width:100%;height:58px;padding:46px 0;font-size:14px;color:#999}
+.t_footer .linkBox{text-align:center;margin-bottom:20px}
+.t_footer .linkBox a{color:#999;height:14px;line-height:14px;padding:0 5px 0 3px;vertical-align:middle}
+.t_footer .linkBox a:hover{text-decoration:underline}
+.t_footer p{text-align:center}
+.t_register{width:840px;margin:50px auto 0;padding-bottom:120px}
+.t_register .form-wrapper{border:solid 1px #ddd;padding:38px 20px 45px}
+.t_register .form-wrapper .tpass-form-item{position:relative;clear:both;height:48px;margin-bottom:20px;zoom:1}
+.t_register .form-wrapper .tpass-form-item .tpass-button{border:0;border-image:none}
+.t_register .form-wrapper .tpass-form-item .tpass-button-verifyCode{width:130px;height:48px;line-height:48px;background:#fff;color:#e13228;margin-left:10px;font-size:14px;cursor:pointer}
+.t_register .form-wrapper .tpass-form-item .tpass-button-verifyCode:hover{background:#fde3e3}
+.t_register .form-wrapper .tpass-form-item .tpass-button-verifyCode,.t_register .form-wrapper .tpass-form-item .editpwd-wrapper .tpass-button-verifyCode{background:#fff;border-radius:4px;border:1px solid #e13228}
+.t_register .form-wrapper .tpass-form-item .tpass-button-verifyCode.disabled,.t_register .form-wrapper .tpass-form-item .editpwd-wrapper .tpass-button-verifyCode.disabled{background:#d9d9d9;border:1px solid #d9d9d9;color:#fff;cursor:not-allowed}
+.t_register .form-wrapper .tpass-form-item-isAgree{height:30px;margin-top:-18px}
+.t_register .form-wrapper .tpass-form-item-isAgree label{font-size:12px;color:#999;margin-left:5px}
+.t_register .form-wrapper .tpass-form-item-isAgree label a{color:#e13228;margin-left:7px}
+.t_register .form-wrapper .tpass-form-item-isAgree label a:hover{text-decoration:underline}
+.t_register .form-wrapper .tpass-form-item-isAgree input{vertical-align:inherit;*vertical-align:text-bottom;top:2px;position:relative}
+.t_register .form-wrapper .tpass-form-item-submit,.t_register .form-wrapper .tpass-form-item-isAgree{margin-left:96px}
+.t_register .form-wrapper .tpass-form-item-submit{*margin-left:48px}
+.t_register .form-wrapper .tpass-label{display:block;float:left;width:88px;height:48px;line-height:48px;margin-right:8px;text-align:right;color:#999;font-size:14px}
+.t_register .form-wrapper .tpass-text-input{display:block;float:left;width:314px;height:16px;padding:15px 18px;border:solid 1px #ddd;font-size:14px;background:#fff}
+.t_register .form-wrapper .tpass-item-placeholder{color:#ccc;cursor:text;display:block;font-size:14px;height:20px;position:absolute;left:116px;top:15px;display:none}
+.t_register .form-wrapper .tpass-item-error{color:#d54545;font-size:12px;height:48px;line-height:48px;margin-left:20px;display:none;*zoom:1}
+.t_register .form-wrapper .tpass-pwd-autocomplete{width:1px;height:1px;border:0;opacity:0;filter:alpha(opacity=0);-ms-filter:"alpha(Opacity=0)";*display:none}
+.t_register .form-wrapper .tpass-img-verification{width:100px;height:40px;margin-top:3px;margin-left:5px;*margin-left:10px}
+.t_register .form-wrapper .tpass-change-link{position:relative;margin-left:5px;color:#e13228}
+.t_register .form-wrapper .tpass-change-link:hover{text-decoration:underline}
+.t_register .form-wrapper .tpass-item-error-pic_check{position:relative}
+.t_register .form-wrapper .tpass-button-submit{width:352px;height:50px;background:#e13228;color:#fff;font-size:16px;cursor:pointer;border-radius:4px}
+.t_register .form-wrapper .tpass-button-submit:hover{background:#d13d3d}
