@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<a href="/index/">返回</a> <br>
-		<form action="/login/" method="post">
+{#		<form action="/login/" method="post">#}
 			{% csrf_token %}
 			<div id="register" class="t_register clearfix">
 			<div class="form-wrapper register-wrapper">
@@ -25,11 +25,11 @@
 					<span class="tpass-item-error tpass-item-error-password" id="checkPwd">6-16位密码</span>
 				</p>
 				<p class="tpass-form-item tpass-form-item-submit">
-					<input type="submit"  value="登录" class="tpass-button tpass-button-submit">
+					<input type="button"  value="登录" class="tpass-button tpass-button-submit">
 				</p>
 			</div>
 		</div>
-		</form>
+{#		</form>#}
 
 	</body>
 	<script src="{% static 'myApp/js/login.js' %}" type="text/javascript" charset="utf-8"></script>

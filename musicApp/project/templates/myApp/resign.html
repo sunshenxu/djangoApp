@@ -1,19 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>注册</title>
-</head>
-<body>
-<a href="/index/">返回</a> <br>
-<form action="/resign/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    昵称：<input type="text" name="userName"> <br>
-    账号：<input type="text" name="userId"> <br>
-    密码：<input type="password" name="userPwd"> <br>
-    再次输入密码：<input type="password" name="userpwds"> <br>
-    上传头像：<input type="file" name="userImg"> <br>
-    <input type="submit" value="注册">
-</form>
-</body>
+<html>
+	<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>登录</title>
+        {% load static from staticfiles %}
+<script src="{% static 'myApp/js/jquery-3.1.1.min.js'%}" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'myApp/css/login.css'%}"/>
+	</head>
+	<body>
+		<a href="/index/">返回</a> <br>
+		<form action="/resign/" method="post">
+            {% csrf_token %}
+			<div id="register" class="t_register clearfix">
+			<div class="form-wrapper register-wrapper">
+				<p class="tpass-form-item">
+					<label class="tpass-label tpass-label-phone">昵称</label>
+					<input type="text" id="uName" name="userName" class="tpass-text-input" placeholder="请输入你的昵称" autocomplete="off">
+					<span class="tpass-item-error tpass-item-error-phone" id="checkName">昵称不能为空</span>
+				</p>
+				<p class="tpass-form-item">
+					<label class="tpass-label tpass-label-phone">账号</label>
+					<input type="text" id="id" name="userId" class="tpass-text-input" placeholder="6-12位账号" autocomplete="off" maxlength="12">
+					<span class="tpass-item-error tpass-item-error-phone" id="checkId">6-12位账号</span>
+					<span class="tpass-item-error tpass-item-error-phone" id="checkIds">账号已存在</span>
+				</p>
+				<p class="tpass-form-item">
+					<label class="tpass-label tpass-label-password">密码</label>
+					<input type="password" id="pwd" name="userPwd" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off">
+					<span class="tpass-item-error tpass-item-error-password" id="checkPwd">6-16位密码</span>
+				</p>
+				<p class="tpass-form-item">
+					<label class="tpass-label tpass-label-password">再次输入密码</label>
+					<input type="password" id="checkpasswd" name="userpwds" class="tpass-text-input" placeholder="6-16位密码" autocomplete="off">
+					<span class="tpass-item-error tpass-item-error-password" id="checkpasswdss">两次密码不一致</span>
+				</p>
+				<p class="tpass-form-item tpass-form-item-submit">
+					<input type="submit"  value="注册" class="tpass-button tpass-button-submit">
+				</p>
+			</div>
+		</div>
+		</form>
+	</body>
+	<script src="{% static 'myApp/js/resign.js' %}" type="text/javascript" charset="utf-8"></script>
+
 </html>

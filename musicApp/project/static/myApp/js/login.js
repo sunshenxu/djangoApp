@@ -4,6 +4,7 @@ $(document).ready(function(){
 	var $pwd = $("#pwd")
 	var $checkPwd = $("#checkPwd")
 	var $btn = $(".tpass-button-submit")
+
 	$userId.bind("focus",function(){
 		$checkId.css("display","none")
 	})
@@ -25,5 +26,16 @@ $(document).ready(function(){
 		}else{
 			$btn.removeAttr("disabled")
 		}
+	})
+	$btn.bind("click",function(){
+		$.post("/login/",{"userId":$userId.val(),"passwd":$pwd.val()},function(data){
+			 if(data.status=='idNot'){
+				alert("账号不存在！！！")
+			}else if(data.status=='pwdError'){
+				alert("密码错误请重新输入！！！")
+			}else if(data.status == "true"){
+			 	window.location.assign("/index/")
+			 }
+		})
 	})
 })

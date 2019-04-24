@@ -2,6 +2,9 @@ from django.shortcuts import render,redirect
 import os
 from django.conf import settings
 import time,random
+
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import User
 from django.contrib.auth import logout
 from django.http import HttpResponse
@@ -11,6 +14,7 @@ def index(request):
     name = request.session.get('username','未登录')
     return render(request,'myApp/index.html',{'title':name})
 
+@csrf_exempt
 def login(request):
     if request.method == 'POST':
         try:
@@ -18,7 +22,7 @@ def login(request):
             if request.POST.get('passwd') == User.userobj.get(userId=userId).userPwd:
                 request.session['username'] = User.userobj.get(userId=userId).userName
                 request.session['token'] = str(time.time() + random.randrange(0,100000))
-                return redirect('/index/')
+                return JsonResponse({"status":"true"})
             else:
                 return JsonResponse({"status":"pwdError"})
         except User.DoesNotExist as e:
@@ -32,12 +36,8 @@ def resign(request):
         userPwd = request.POST.get('userPwd')
         userName = request.POST.get('userName')
         userRank = 0
-        f = request.FILES.get('userImg')
-        filePath = os.path.join(settings.MDEIA_ROOT,userId+'.jpg')
-        userImg = filePath
-        with open(filePath,'wb') as fp:
-            for data in f.chunks():
-                fp.write(data)
+
+        userImg = os.path.join(settings.MDEIA_ROOT,'default.png')
         userToken = str(time.time() + random.randrange(0,100000))
         user = User.userobj.createUser(userId,userName,userPwd,userImg,userToken,userRank)
         user.save()
@@ -50,3 +50,22 @@ def resign(request):
 def out(request):
     logout(request)
     return redirect('/index/')
+
+
+@csrf_exempt
+def checkuserid(request):
+    userId = request.POST.get("userId")
+    try:
+        user = User.userobj.get(userId=userId)
+        return JsonResponse({"status":"idExist"})
+    except User.DoesNotExist:
+        return JsonResponse({"status": "idNotExist"})
+
+
+# def upImage(request):
+#     f = request.FILES.get('userImg')
+#     filePath = os.path.join(settings.MDEIA_ROOT,userId+'.jpg')
+#     userImg = filePath
+#     with open(filePath,'wb') as fp:
+#         for data in f.chunks():
+#             fp.write(data)
