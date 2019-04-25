@@ -1,0 +1,94 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+#topbar{
+	height: 90px;
+	width: 100%;
+	background-color: #242424;
+}
+#logo-wrapper{
+	width: 105px;
+	height: 90px;
+	float: left;
+	margin-left: 30px;
+}
+#logo-wrapper p{
+	color: white;
+	text-align: center;
+	line-height: 90px;
+	font-size: 25px;
+	font-family: Tahoma,Arial,"Hiragino Sans GB",simsun,sans-serif;;
+}
+#searchBar{
+	width: 350px;
+	height: 90px;
+	float: left;
+	margin-left: 50px;
+	
+}
+#input{
+	height: 32px;
+	width: 250px;
+	/*border-radius: 17px;*/
+	margin-top: 25px;
+	border: solid white 1px;
+}
+#submit{
+	margin-top: 25px;
+	height: 32px;
+	width: 90px;
+	border-radius: 10px;
+	background-color: #242424;
+	color: #ccc;
+	line-height:32px;
+	border-radius:20px;
+	border: solid white 1px;
+}
+
+#rec{
+	width: 500px;
+	height: 24px;
+	float: left;
+	margin-left: 60px;
+	margin-top: 32px;
+}
+#rec li{
+	color: white;
+	
+	list-style-type: none;
+	float: left;
+	/*width: 80px;*/
+	height: 16px;
+	margin-left: 20px;
+	font-size: 12px;
+}
+
+#userBar{
+	/*width: 300px;*/
+	height: 24px;
+	float: left;
+	margin-left: 20px;
+	margin-top: 32px;
+}
+#userBar li{
+	color: white;
+	list-style-type: none;
+	float: left;
+	/*width: 40px;*/
+	height: 16px;
+	margin-left: 20px;
+	font-size: 12px;
+}
+
+#userBar li a{
+	text-decoration: none;
+	color: white;
+}
+#userBar li a img{
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	margin-top: -13px;
+}

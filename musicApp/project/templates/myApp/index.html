@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>主页</title>
-</head>
-<body>
-用户名：{{ title }} <br>
-<a href="{% url 'app:resign' %}">注册</a>
-<br>
-<a href="{% url 'app:login' %}">登录</a>
-<a href="/logout/">退出登录</a>
-</body>
-</html>
+{% extends "myApp/base.html"%}
+{% load static from staticfiles %}
+{% block linkScript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/index.css' %}">
+    <script src="{% static 'myApp/js/index.js' %}" type="text/javascript" charset="utf-8"></script>
+{% endblock linkScript %}
+
+{% block main %}
+
+{% endblock main %}

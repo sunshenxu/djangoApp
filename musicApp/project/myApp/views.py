@@ -12,7 +12,7 @@ from django.http import JsonResponse
 # Create your views here.
 def index(request):
     name = request.session.get('username','未登录')
-    return render(request,'myApp/index.html',{'title':name})
+    return render(request,'myApp/index.html',{'title':"主页",'userName':name})
 
 @csrf_exempt
 def login(request):
@@ -62,7 +62,7 @@ def checkuserid(request):
         return JsonResponse({"status": "idNotExist"})
 
 
-# def upImage(request):
+# def upImage(request):base.html
 #     f = request.FILES.get('userImg')
 #     filePath = os.path.join(settings.MDEIA_ROOT,userId+'.jpg')
 #     userImg = filePath
