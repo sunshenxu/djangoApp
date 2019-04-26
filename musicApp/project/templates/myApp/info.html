@@ -1,0 +1,14 @@
+{% extends "myApp/base.html"%}
+{% load static from staticfiles %}
+{% block linkScript %}
+    <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/info.css' %}">
+    <script src="{% static 'myApp/js/info.js' %}" type="text/javascript" charset="utf-8"></script>
+{% endblock linkScript %}
+
+{% block main %}
+<div>
+{{ music.lyricContent|safe }}
+</div>
+    <div style="height: 100px"></div>
+{% endblock main %}
+

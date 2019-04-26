@@ -7,8 +7,10 @@ from django.conf.urls import url
 from . import views
 urlpatterns = [
     url(r'^index/$', views.index),
+    url(r'^index/(\d+)/$', views.info),
     url(r'^login/$',views.login,name='login'),
     url(r'^resign/$',views.resign,name='resign'),
     url(r'^logout/$',views.out,name='logout'),
-url(r'^checkuserid/$',views.checkuserid),
+    url(r'^checkuserid/$',views.checkuserid),
+    url(r'^search/$',views.search),
 ]

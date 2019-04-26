@@ -24,7 +24,8 @@ def index(request):
             m = {
                 'name':item.musicName,
                 'time':item.musicTime,
-                'outher':item.musicOuther
+                'outher':item.musicOuther,
+                'id':item.musicId,
             }
             mL.append(m)
         # musicLJ = {
@@ -81,6 +82,27 @@ def checkuserid(request):
         return JsonResponse({"status":"idExist"})
     except User.DoesNotExist:
         return JsonResponse({"status": "idNotExist"})
+
+def search(request):
+    name = request.session.get('username', '未登录')
+    if name == "未登录":
+        return redirect('/login/')
+    musicname = request.POST.get("search")
+    searchList = Musci.objects.filter(musicName__contains=musicname)
+    return render(request,'myApp/search.html',{'searchList':searchList,'title':"搜索结果",'userName':name})
+
+#歌词页面
+def info(request,id):
+    try:
+        name = request.session.get('username', '未登录')
+        if name == "未登录":
+            return redirect('/login/')
+        music = Musci.objects.get(musicId=id)
+        # lyricContent = music.lyricContent
+        return render(request,'myApp/info.html',{'title':"歌词",'userName':name,'music':music})
+    except Musci.DoesNotExist as e:
+        return HttpResponse("歌曲不存在")
+
 
 
 # def upImage(request):base.html

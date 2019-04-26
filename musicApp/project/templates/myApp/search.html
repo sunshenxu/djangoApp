@@ -21,7 +21,7 @@
 						</tr>
 					</thead>
 					<tbody>
-                    {% for item in music %}
+                    {% for item in searchList %}
                         <tr class="ls">
 							<td class="order">
 							<div>
@@ -31,7 +31,7 @@
 								</span>
 							</div>
 							</td>
-							<td class="songName"><a href="/index/{{ item.musicId }}/" title="{{ item.musicName }}"><div>{{ item.musicName }}</div></a></td>
+							<td class="songName"><a href="" title="{{ item.musicName }}"><div>{{ item.musicName }}</div></a></td>
 							<td class="songTime"><span>
 								{{ item.musicTime }}
 							</span></td>

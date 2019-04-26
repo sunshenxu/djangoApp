@@ -1,27 +1,27 @@
 $(function(){
 	var song = [
 		{
-			'cover' : "http://musicugc.qianqian.com/ugcdiy/pic/deb1778ef4a562908bd9d9c30cc27e07.jpg@s_2,w_346,h_346",
+			'cover' : "/static/myApp/images/default.png",
 			'src' : 'http://music.163.com/song/media/outer/url?id=38576323.mp3',
 			'title' : '春风十里'
 		},
 		{
-			'cover' : 'http://musicugc.qianqian.com/ugcdiy/pic/deb1778ef4a562908bd9d9c30cc27e07.jpg@s_2,w_346,h_346',
+			'cover' : '/static/myApp/images/default.png',
 			'src' : 'http://music.163.com/song/media/outer/url?id=531295576.mp3',
 			'title' : '最美的期待'
 		},
 		{
-			'cover' : 'http://musicugc.qianqian.com/ugcdiy/pic/deb1778ef4a562908bd9d9c30cc27e07.jpg@s_2,w_346,h_346',
+			'cover' : '/static/myApp/images/default.png',
 			'src' : 'http://music.163.com/song/media/outer/url?id=368794.mp3',
 			'title' : '牡丹江'
 		},
 		{
-			'cover' : 'http://musicugc.qianqian.com/ugcdiy/pic/deb1778ef4a562908bd9d9c30cc27e07.jpg@s_2,w_346,h_346',
+			'cover' : '/static/myApp/images/default.png',
 			'src' : 'http://music.163.com/song/media/outer/url?id=26217171.mp3',
 			'title' : '有可能的夜晚'
 		},
 		{
-			'cover' : 'http://musicugc.qianqian.com/ugcdiy/pic/deb1778ef4a562908bd9d9c30cc27e07.jpg@s_2,w_346,h_346',
+			'cover' : '/static/myApp/images/default.png',
 			'src' : 'http://music.163.com/song/media/outer/url?id=526646591.mp3',
 			'title' : '（笑）'
 		}
@@ -34,7 +34,7 @@ $(function(){
 
 	/* 向歌单中添加新曲目，第二个参数true为新增后立即播放该曲目，false则不播放 */
 	audioFn.newSong({
-		'cover' : 'http://musicugc.qianqian.com/ugcdiy/pic/deb1778ef4a562908bd9d9c30cc27e07.jpg@s_2,w_346,h_346',
+		'cover' : '/static/myApp/images/default.png',
 		'src' : 'http://music.163.com/song/media/outer/url?id=1356499052.mp3',
 		'title' : '你的姑娘'
 	},false);
@@ -48,8 +48,20 @@ $(function(){
 //	audioFn.selectMenu(3,true);
 
 	/* 查看歌单中的曲目 */
-//	console.log(audioFn.song);
+	// console.log(audioFn.song);
 
 	/* 当前播放曲目的对象 */
 //	console.log(audioFn.audio);
+
+	//实现播放功能
+    $(".play").bind("click",function () {
+		var title = $(this).attr("musicname");
+		var id = $(this).attr("musicid");
+		var src = 'http://music.163.com/song/media/outer/url?id='+id+'.mp3';
+        audioFn.newSong({
+		'cover' : '/static/myApp/images/default.png',
+		'src' : src,
+		'title' : title
+	},true);
+    });
 });
