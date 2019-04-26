@@ -6,5 +6,41 @@
 {% endblock linkScript %}
 
 {% block main %}
-
+<div class="songtb">
+			<div id="songhead">
+				<span>歌曲列表</span>
+			</div>
+			<div id="songList">
+				<table  cellspacing="0px">
+					<thead>
+						<tr>
+							<th class="order"><span>&nbsp;</span></th>
+							<th class="songName"><span>歌曲标题</span></th>
+							<th class="songTime"><span>时长</span></th>
+							<th class="songer"><span>歌手</span></th>
+						</tr>
+					</thead>
+					<tbody>
+                    {% for item in music %}
+                        <tr class="ls">
+							<td class="order">
+							<div>
+								<span class="num">{{forloop.counter}}</span>
+								<span class="play">
+									<img src="{% static 'myApp/images/pl.jpg' %}" title="播放"/>
+								</span>
+							</div>
+							</td>
+							<td class="songName"><a href="" title="5000 Miles"><div>{{ item.musicName }}</div></a></td>
+							<td class="songTime"><span>
+								{{ item.musicTime }}
+							</span></td>
+							<td class="songer"><a href="" title=" Thomas Junior"><div>{{ item.musicOuther }}</div></a></td>
+						</tr>
+                    {% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
 {% endblock main %}
+

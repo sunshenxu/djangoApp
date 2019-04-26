@@ -36,7 +36,7 @@ class Musci(models.Model):
     musicOuther = models.CharField(max_length=30)
     # lyricContent = models.CharField(max_length=400)
     lyricContent = models.TextField()
-    musicImg = models.CharField(max_length=100)
+    # musicImg = models.CharField(max_length=100)
 
 
     class Meta:

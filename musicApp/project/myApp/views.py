@@ -2,17 +2,38 @@ from django.shortcuts import render,redirect
 import os
 from django.conf import settings
 import time,random
+import json
 
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import User
+from .models import User,Musci
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.http import JsonResponse
 # Create your views here.
 def index(request):
     name = request.session.get('username','未登录')
-    return render(request,'myApp/index.html',{'title':"主页",'userName':name})
+    start = 0
+    limit = 50
+    if request.is_ajax():
+        start = int(request.GET.get("start"))
+        limit = int(request.GET.get("limit"))
+        musicList = Musci.objects.all()[start:start + limit]
+        mL = []
+        for item in musicList:
+            m = {
+                'name':item.musicName,
+                'time':item.musicTime,
+                'outher':item.musicOuther
+            }
+            mL.append(m)
+        # musicLJ = {
+        #     'music':mL
+        # }
+        # musicJson = json.dumps(musicLJ)
+        return JsonResponse({"music":mL})
+    music = Musci.objects.all()[start:start+limit]
+    return render(request,'myApp/index.html',{'title':"主页",'userName':name,"music":music})
 
 @csrf_exempt
 def login(request):

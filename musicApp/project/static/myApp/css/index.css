@@ -1,0 +1,105 @@
+a{
+	text-decoration: none;
+}
+.songtb{
+	width: 800px;
+	margin: 0 auto;
+	border: 1.5px solid #e0e0e0;
+	margin-top: 5px;
+}
+#songhead{
+	font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #333333;
+	height: 50px;
+	line-height: 50px;
+	margin-top: 5px;
+	border-bottom: 2px solid #c20c0c;
+}
+thead tr th{
+	color: #666666;
+	font-weight: normal;
+	font-size: 15px;
+	background-color: #f7f7f7;
+	text-align: left;
+	border-bottom: 1.5px solid #d0d0d0;
+}
+.order{
+	width: 100px;
+	height: 35px;
+	padding-left: 10px;
+	/*line-height: 35px;*/
+}
+.songName{
+	width: 300px;
+	height: 35px;
+	padding-left: 8px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.songName a div{
+	width: 300px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.songTime{
+	width: 150px;
+	height: 35px;
+	padding-left: 8px;
+}
+.songer{
+	width: 250px;
+	height: 35px;
+	padding-left: 8px;
+}
+.songer a div{
+	width: 250px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+thead .order{
+	border-right: 1.5px solid #d0d0d0;
+}
+thead .songName{
+	border-right: 1.5px solid #d0d0d0;
+}
+thead .songTime{
+	border-right: 1.5px solid #d0d0d0;
+}
+
+tbody{
+	font-size: 15px;
+	color: #666666;
+}
+tbody a{
+	color: #666666;
+}
+.order div{
+	position: relative;
+}
+.play{
+	margin-left: 33px;
+	position: absolute;
+	left: 18px;
+	top: -10px;
+}
+.play img{
+	height: 20px;
+	width: 20px;
+	cursor: pointer;
+}
+.order .num{
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	align-content: center;
+	position: absolute;
+	left: 8px;
+	top: -10px;
+}
+tbody .ls:nth-child(odd){
+	background-color: #f7f7f7;
+}

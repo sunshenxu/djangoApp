@@ -7,9 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'myApp/css/base.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'myApp/css/audio.css' %}">
 		<script src="{% static 'myApp/js/jquery-3.1.1.min.js' %}" type="text/javascript" charset="utf-8"></script>
-        {% block linkScript %}
-        
-        {% endblock %}
+
 	</head>
 	<body>
 		<div id="topbar">
@@ -92,6 +90,9 @@
 	</div>
 		
 	</body>
+    {% block linkScript %}
+
+    {% endblock %}
 	<script type="text/javascript" src="{% static 'myApp/js/audio.js' %}"></script>
 	<script src="{% static 'myApp/js/playAudio.js' %}" type="text/javascript" charset="utf-8"></script>
 </html>
