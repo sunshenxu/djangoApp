@@ -6,9 +6,14 @@
 {% endblock linkScript %}
 
 {% block main %}
-<div>
-{{ music.lyricContent|safe }}
-</div>
+
+    <div id="geci">
+        <h3 id="player" musicname="{{ music.musicName }}" musicid="{{ music.musicId }}">{{ music.musicName }}</h3>
+        <br><br>
+        <br>
+        {{ music.lyricContent|safe }}
+    </div>
+
     <div style="height: 100px"></div>
 {% endblock main %}
 

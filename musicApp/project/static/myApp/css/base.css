@@ -28,7 +28,7 @@ a{
 	height: 90px;
 	float: left;
 	margin-left: 50px;
-	
+
 }
 #input{
 	height: 32px;
@@ -58,7 +58,7 @@ a{
 }
 #rec li{
 	color: white;
-	
+	cursor: pointer;
 	list-style-type: none;
 	float: left;
 	/*width: 80px;*/

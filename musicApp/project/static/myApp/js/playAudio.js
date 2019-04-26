@@ -64,4 +64,15 @@ $(function(){
 		'title' : title
 	},true);
     });
+
+    $("#player").bind("click",function () {
+		var title1 = $(this).attr("musicname");
+		var id1 = $(this).attr("musicid");
+		var src1 = 'http://music.163.com/song/media/outer/url?id='+id1+'.mp3';
+        audioFn.newSong({
+		'cover' : '/static/myApp/images/default.png',
+		'src' : src1,
+		'title' : title1
+	},true);
+    });
 });
