@@ -44,6 +44,7 @@ def login(request):
             if request.POST.get('passwd') == User.userobj.get(userId=userId).userPwd:
                 request.session['username'] = User.userobj.get(userId=userId).userName
                 request.session['token'] = str(time.time() + random.randrange(0,100000))
+                request.session['userId'] = userId
                 return JsonResponse({"status":"true"})
             else:
                 return JsonResponse({"status":"pwdError"})
@@ -65,6 +66,7 @@ def resign(request):
         user.save()
         request.session['username'] = userName
         request.session['token'] = userToken
+        request.session['userId'] = userId
         return redirect('/index/')
     else:
         return render(request,'myApp/resign.html')
@@ -102,6 +104,17 @@ def info(request,id):
         return render(request,'myApp/info.html',{'title':"歌词",'userName':name,'music':music})
     except Musci.DoesNotExist as e:
         return HttpResponse("歌曲不存在")
+
+def userInfo(request):
+    name = request.session.get('username', '未登录')
+    if name == "未登录":
+        return redirect('/login/')
+    userId = request.session.get('userId')
+    user = User.userobj.get(userId = userId)
+    src = user.userImg.split("\\")[-1]
+    return render(request,'myApp/userInfo.html',{"user":user,'userName':name,'title':"个人信息","src":src})
+
+
 
 
 

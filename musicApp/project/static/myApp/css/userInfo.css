@@ -1,0 +1,23 @@
+.info{
+    width: 800px;
+    margin: 0 auto;
+    border: 1.5px solid #e0e0e0;
+    border-bottom: 2px solid #c20c0c;
+    text-align: center;
+    background-color: #f7f7f7;
+    height: 500px;
+}
+.info .img{
+    cursor: pointer;
+    width: 188px;
+    height: 188px;
+    border: 1.5px solid #e0e0e0;
+    margin: 20px;
+    overflow: hidden;
+    position: absolute;
+
+}
+.info h2{
+    color: #ff6866;
+    margin-top: 50px;
+}
