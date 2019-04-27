@@ -9,13 +9,14 @@
 }
 .info .img{
     cursor: pointer;
-    width: 188px;
-    height: 188px;
     border: 1.5px solid #e0e0e0;
     margin: 20px;
     overflow: hidden;
     position: absolute;
-
+}
+.info img{
+    width: 188px;
+    height: 188px;
 }
 .info h2{
     color: #ff6866;

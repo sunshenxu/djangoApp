@@ -6,7 +6,7 @@
 </head>
 <body>
 <a href="/index/">返回</a> <br>
-<form action="/upImage/" method="post" enctype="multipart/form-data">
+<form action="/changeImage/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     上传头像：<input type="file" name="userImg"> <br>
     <input type="submit" value="提交">

@@ -34,7 +34,12 @@ def index(request):
         # musicJson = json.dumps(musicLJ)
         return JsonResponse({"music":mL})
     music = Musci.objects.all()[start:start+limit]
-    return render(request,'myApp/index.html',{'title':"主页",'userName':name,"music":music})
+    if name == "未登录":
+        return render(request, 'myApp/index.html', {'title': "主页", 'userName': name, "music": music,"src":"default.png"})
+    userId = request.session.get('userId')
+    user = User.userobj.get(userId=userId)
+    src = user.userImg.split("\\")[-1]
+    return render(request,'myApp/index.html',{'title':"主页",'userName':name,"music":music,"src":src})
 
 @csrf_exempt
 def login(request):
@@ -91,7 +96,10 @@ def search(request):
         return redirect('/login/')
     musicname = request.POST.get("search")
     searchList = Musci.objects.filter(musicName__contains=musicname)
-    return render(request,'myApp/search.html',{'searchList':searchList,'title':"搜索结果",'userName':name})
+    userId = request.session.get('userId')
+    user = User.userobj.get(userId=userId)
+    src = user.userImg.split("\\")[-1]
+    return render(request,'myApp/search.html',{'searchList':searchList,'title':"搜索结果",'userName':name,'src':src})
 
 #歌词页面
 def info(request,id):
@@ -100,8 +108,10 @@ def info(request,id):
         if name == "未登录":
             return redirect('/login/')
         music = Musci.objects.get(musicId=id)
-        # lyricContent = music.lyricContent
-        return render(request,'myApp/info.html',{'title':"歌词",'userName':name,'music':music})
+        userId = request.session.get('userId')
+        user = User.userobj.get(userId=userId)
+        src = user.userImg.split("\\")[-1]
+        return render(request,'myApp/info.html',{'title':"歌词",'userName':name,'music':music,'src':src})
     except Musci.DoesNotExist as e:
         return HttpResponse("歌曲不存在")
 
@@ -115,13 +125,22 @@ def userInfo(request):
     return render(request,'myApp/userInfo.html',{"user":user,'userName':name,'title':"个人信息","src":src})
 
 
+def upImage(request):
+    name = request.session.get('username', '未登录')
+    if name == "未登录":
+        return redirect('/login/')
+    return render(request,"myApp/upImage.html")
 
 
-
-# def upImage(request):base.html
-#     f = request.FILES.get('userImg')
-#     filePath = os.path.join(settings.MDEIA_ROOT,userId+'.jpg')
-#     userImg = filePath
-#     with open(filePath,'wb') as fp:
-#         for data in f.chunks():
-#             fp.write(data)
+def changeImage(request):
+    f = request.FILES.get('userImg')
+    userId = request.session.get('userId')
+    filePath = os.path.join(settings.MDEIA_ROOT,userId+'.jpg')
+    userImg = filePath
+    user = User.userobj.get(userId=userId)
+    user.userImg = userImg
+    user.save()
+    with open(filePath,'wb') as fp:
+        for data in f.chunks():
+            fp.write(data)
+    return redirect("/index/")

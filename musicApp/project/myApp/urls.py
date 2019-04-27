@@ -14,4 +14,6 @@ urlpatterns = [
     url(r'^checkuserid/$',views.checkuserid),
     url(r'^search/$',views.search),
     url(r'^userInfo/$',views.userInfo),
+    url(r'^upImage/$',views.upImage),
+    url(r'^changeImage/$',views.changeImage),
 ]
