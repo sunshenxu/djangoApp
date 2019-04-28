@@ -24,14 +24,14 @@
                     {% for item in music %}
                         <tr class="ls">
 							<td class="order">
-							<div>
+							<div class="par">
 								<span class="num">{{forloop.counter}}</span>
-								<span class="play"  musicname="{{ item.musicName }}" musicid="{{ item.musicId }}">
+								<span class="play"  musicname="{{ item.musicName }}" musicid="{{ item.musicId }}" musicimg="{{ item.musicImg }}">
 									<img src="{% static 'myApp/images/pl.jpg' %}" title="播放" />
 								</span>
 							</div>
 							</td>
-							<td class="songName"><a href="/index/{{ item.musicId }}/" title="{{ item.musicName }}" target="_blank"><div>{{ item.musicName }}</div></a></td>
+							<td class="songName"><a href="/index/{{ item.musicId }}/" title="{{ item.musicName }}"><div>{{ item.musicName }}</div></a></td>
 							<td class="songTime"><span>
 								{{ item.musicTime }}
 							</span></td>

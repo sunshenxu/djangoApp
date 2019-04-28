@@ -33,11 +33,11 @@ $(function(){
 	});
 
 	/* 向歌单中添加新曲目，第二个参数true为新增后立即播放该曲目，false则不播放 */
-	audioFn.newSong({
-		'cover' : '/static/myApp/images/default.png',
-		'src' : 'http://music.163.com/song/media/outer/url?id=1356499052.mp3',
-		'title' : '你的姑娘'
-	},false);
+	// audioFn.newSong({
+	// 	'cover' : '/static/myApp/images/default.png',
+	// 	'src' : 'http://music.163.com/song/media/outer/url?id=1356499052.mp3',
+	// 	'title' : '你的姑娘'
+	// },false);
 	/* 暂停播放 */
 //	audioFn.stopAudio();
 
@@ -54,12 +54,14 @@ $(function(){
 //	console.log(audioFn.audio);
 
 	//实现播放功能
-    $(".play").bind("click",function () {
+    $("tbody").on("click",".play",function () {
 		var title = $(this).attr("musicname");
 		var id = $(this).attr("musicid");
 		var src = 'http://music.163.com/song/media/outer/url?id='+id+'.mp3';
+		var img = $(this).attr("musicimg");
+
         audioFn.newSong({
-		'cover' : '/static/myApp/images/default.png',
+		'cover' : img,
 		'src' : src,
 		'title' : title
 	},true);
@@ -69,8 +71,10 @@ $(function(){
 		var title1 = $(this).attr("musicname");
 		var id1 = $(this).attr("musicid");
 		var src1 = 'http://music.163.com/song/media/outer/url?id='+id1+'.mp3';
+		var img1 = $(this).attr("musicimg");
+
         audioFn.newSong({
-		'cover' : '/static/myApp/images/default.png',
+		'cover' : img1,
 		'src' : src1,
 		'title' : title1
 	},true);

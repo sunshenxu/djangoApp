@@ -36,8 +36,26 @@ class Musci(models.Model):
     musicOuther = models.CharField(max_length=30)
     # lyricContent = models.CharField(max_length=400)
     lyricContent = models.TextField()
-    # musicImg = models.CharField(max_length=100)
+    musicImg = models.CharField(max_length=100)
 
 
     class Meta:
         db_table = 'music'
+
+class myMusicList(models.Model):
+    userId = models.CharField(max_length=12)
+    musicId = models.CharField(max_length=30)
+    musicName = models.CharField(max_length=30)
+    musicTime = models.CharField(max_length=20)
+    musicOuther = models.CharField(max_length=30)
+    # lyricContent = models.TextField()
+    musicImg = models.CharField(max_length=100)
+    # isDelete = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'mymusiclist'
+
+    @classmethod
+    def createList(cls,userId,musicId,musicName,musicTime,musicOuther,musicImg):
+        l = cls(userId=userId,musicId=musicId,musicName=musicName,musicTime=musicTime,musicOuther=musicOuther,musicImg=musicImg)
+        return l

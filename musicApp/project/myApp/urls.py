@@ -16,4 +16,5 @@ urlpatterns = [
     url(r'^userInfo/$',views.userInfo),
     url(r'^upImage/$',views.upImage),
     url(r'^changeImage/$',views.changeImage),
+    url(r'^myList/$',views.myList),
 ]

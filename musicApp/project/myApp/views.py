@@ -6,7 +6,7 @@ import json
 
 from django.views.decorators.csrf import csrf_exempt
 
-from .models import User,Musci
+from .models import User,Musci,myMusicList
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.http import JsonResponse
@@ -26,6 +26,7 @@ def index(request):
                 'time':item.musicTime,
                 'outher':item.musicOuther,
                 'id':item.musicId,
+                'img':item.musicImg
             }
             mL.append(m)
         # musicLJ = {
@@ -34,10 +35,10 @@ def index(request):
         # musicJson = json.dumps(musicLJ)
         return JsonResponse({"music":mL})
     music = Musci.objects.all()[start:start+limit]
-    if name == "未登录":
+    token = request.session.get('token')
+    if token==None:     #这里应该用token值验证登录
         return render(request, 'myApp/index.html', {'title': "主页", 'userName': name, "music": music,"src":"default.png"})
-    userId = request.session.get('userId')
-    user = User.userobj.get(userId=userId)
+    user = User.userobj.get(userToken=token)
     src = user.userImg.split("\\")[-1]
     return render(request,'myApp/index.html',{'title':"主页",'userName':name,"music":music,"src":src})
 
@@ -46,11 +47,14 @@ def login(request):
     if request.method == 'POST':
         try:
             userId = request.POST.get('userId')
-            if request.POST.get('passwd') == User.userobj.get(userId=userId).userPwd:
-                request.session['username'] = User.userobj.get(userId=userId).userName
-                request.session['token'] = str(time.time() + random.randrange(0,100000))
-                request.session['userId'] = userId
-                return JsonResponse({"status":"true"})
+            user = User.userobj.get(userId=userId)
+            if request.POST.get('passwd') == user.userPwd:
+                request.session['username'] = user.userName
+                token = str(time.time() + random.randrange(0,100000))
+                request.session['token'] =  token   #这里应要把token值存入数据库中
+                user.userToken = token
+                user.save()
+                return JsonResponse({"status":"true"})      #使用ajax，不能在这里使用重定向
             else:
                 return JsonResponse({"status":"pwdError"})
         except User.DoesNotExist as e:
@@ -71,7 +75,6 @@ def resign(request):
         user.save()
         request.session['username'] = userName
         request.session['token'] = userToken
-        request.session['userId'] = userId
         return redirect('/index/')
     else:
         return render(request,'myApp/resign.html')
@@ -92,12 +95,12 @@ def checkuserid(request):
 
 def search(request):
     name = request.session.get('username', '未登录')
-    if name == "未登录":
+    token = request.session.get('token')
+    if token == None:
         return redirect('/login/')
-    musicname = request.POST.get("search")
-    searchList = Musci.objects.filter(musicName__contains=musicname)
-    userId = request.session.get('userId')
-    user = User.userobj.get(userId=userId)
+    musicname = request.GET.get("search")
+    searchList = Musci.objects.filter(musicName__contains=musicname)[0:20]
+    user = User.userobj.get(userToken=token)
     src = user.userImg.split("\\")[-1]
     return render(request,'myApp/search.html',{'searchList':searchList,'title':"搜索结果",'userName':name,'src':src})
 
@@ -105,11 +108,11 @@ def search(request):
 def info(request,id):
     try:
         name = request.session.get('username', '未登录')
-        if name == "未登录":
+        token = request.session.get('token')
+        if token == None:
             return redirect('/login/')
         music = Musci.objects.get(musicId=id)
-        userId = request.session.get('userId')
-        user = User.userobj.get(userId=userId)
+        user = User.userobj.get(userToken=token)    #可以使用token值获取该用户
         src = user.userImg.split("\\")[-1]
         return render(request,'myApp/info.html',{'title':"歌词",'userName':name,'music':music,'src':src})
     except Musci.DoesNotExist as e:
@@ -117,30 +120,45 @@ def info(request,id):
 
 def userInfo(request):
     name = request.session.get('username', '未登录')
-    if name == "未登录":
+    token = request.session.get('token')
+    if token == None:
         return redirect('/login/')
-    userId = request.session.get('userId')
-    user = User.userobj.get(userId = userId)
+    try:
+        user = User.userobj.get(userToken=token)
+    except User.DoesNotExist as e:
+        return HttpResponse("用户不存在")
     src = user.userImg.split("\\")[-1]
     return render(request,'myApp/userInfo.html',{"user":user,'userName':name,'title':"个人信息","src":src})
 
 
 def upImage(request):
-    name = request.session.get('username', '未登录')
-    if name == "未登录":
+    token = request.session.get('token')
+    if token == None:
         return redirect('/login/')
     return render(request,"myApp/upImage.html")
 
 
 def changeImage(request):
     f = request.FILES.get('userImg')
-    userId = request.session.get('userId')
+    token = request.session.get('token')
+    user = User.userobj.get(userToken=token)
+    userId = user.userId
     filePath = os.path.join(settings.MDEIA_ROOT,userId+'.jpg')
     userImg = filePath
-    user = User.userobj.get(userId=userId)
     user.userImg = userImg
     user.save()
     with open(filePath,'wb') as fp:
         for data in f.chunks():
             fp.write(data)
     return redirect("/index/")
+
+def myList(request):
+    userId = '111111'
+    musicId = "1111"
+    musicName = "111111"
+    musicTime = "124"
+    musicOuther = "222"
+    musicImg = "535"
+    list = myMusicList.createList(userId,musicId,musicName,musicTime,musicOuther,musicImg)
+    list.save()
+    return HttpResponse("sss")

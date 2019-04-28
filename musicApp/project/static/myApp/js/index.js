@@ -54,10 +54,10 @@ window.onscroll = function () {
 }
 function ajax_function() {
     $.get('/index/',{start:st,limit:lim},function (data) {
-        console.log(data.music);
+        // console.log(data.music);
         var j = st+1;
         for(var i=0;i<data.music.length;i++){
-            var $tr = $('<tr class="ls"><td class="order"><div><span class="num">'+j+'</span><span class="play" musicname="'+data.music[i].name+'" musicid="'+data.music[i].id+'"><img src="/static/myApp/images/pl.jpg" title="播放"/></span></div></td><td class="songName"><a href="" title="'+data.music[i].name+'"><div>'+data.music[i].name+'</div></a></td><td class="songTime"><span>'+data.music[i].time+'</span></td><td class="songer"><a href="" title="'+data.music[i].outher+'"><div>'+data.music[i].outher+'</div></a></td></tr>');
+            var $tr = $('<tr class="ls"><td class="order"><div class="par"><span class="num">'+j+'</span><span class="play" musicname="'+data.music[i].name+'" musicid="'+data.music[i].id+'" musicimg="'+data.music[i].img+'"><img src="/static/myApp/images/pl.jpg" title="播放"/></span></div></td><td class="songName"><a href="/index/'+data.music[i].id+'/" title="'+data.music[i].name+'"><div>'+data.music[i].name+'</div></a></td><td class="songTime"><span>'+data.music[i].time+'</span></td><td class="songer"><a href="" title="'+data.music[i].outher+'"><div>'+data.music[i].outher+'</div></a></td></tr>');
             $("tbody").append($tr);
             j++;
         }
