@@ -2,11 +2,10 @@
 {% load static from staticfiles %}
 {% block linkScript %}
     <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/index.css' %}">
-    <script src="{% static 'myApp/js/index.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'myApp/js/myMusic.js' %}" type="text/javascript" charset="utf-8"></script>
 {% endblock linkScript %}
 
 {% block main %}
-
 <div class="songtb">
 			<div id="songhead">
 				<span>歌曲列表</span>
@@ -22,20 +21,20 @@
 						</tr>
 					</thead>
 					<tbody>
-                    {% for item in music %}
-                        <tr class="ls">
+                    {% for item in myList %}
+                        <tr class="ls" id="{{ item.musicId }}">
 							<td class="order">
-							<div class="par">
+							<div>
 								<span class="num">{{forloop.counter}}</span>
 								<span class="play"  musicname="{{ item.musicName }}" musicid="{{ item.musicId }}" musicimg="{{ item.musicImg }}">
-									<img src="{% static 'myApp/images/pl.jpg' %}" title="播放" />
+									<img src="{% static 'myApp/images/pl.jpg' %}" title="播放"/>
 								</span>
 							</div>
 							</td>
 							<td class="songName"><a href="/index/{{ item.musicId }}/" title="{{ item.musicName }}"><div>{{ item.musicName }}</div></a></td>
 							<td class="songTime"><span>
 								{{ item.musicTime }}
-							</span><span class="addList" title="加入我的歌单" musicid="{{ item.musicId }}">+</span></td>
+							</span><span class="subList" title="从我的歌单移除" musicid="{{ item.musicId }}">-</span></td>
 							<td class="songer"><a href="" title=" {{ item.musicOuther }}"><div>{{ item.musicOuther }}</div></a></td>
 						</tr>
                     {% endfor %}
@@ -43,7 +42,6 @@
 				</table>
 			</div>
 		</div>
-
-
+    <div style="height: 100px;"></div>
 {% endblock main %}
 

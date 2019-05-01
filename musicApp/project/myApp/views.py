@@ -99,7 +99,7 @@ def search(request):
     if token == None:
         return redirect('/login/')
     musicname = request.GET.get("search")
-    searchList = Musci.objects.filter(musicName__contains=musicname)[0:20]
+    searchList = Musci.objects.filter(musicName__istartswith=musicname)[0:20]
     user = User.userobj.get(userToken=token)
     src = user.userImg.split("\\")[-1]
     return render(request,'myApp/search.html',{'searchList':searchList,'title':"搜索结果",'userName':name,'src':src})
@@ -152,13 +152,51 @@ def changeImage(request):
             fp.write(data)
     return redirect("/index/")
 
-def myList(request):
-    userId = '111111'
-    musicId = "1111"
-    musicName = "111111"
-    musicTime = "124"
-    musicOuther = "222"
-    musicImg = "535"
-    list = myMusicList.createList(userId,musicId,musicName,musicTime,musicOuther,musicImg)
-    list.save()
-    return HttpResponse("sss")
+def addList(request):
+    token = request.session.get('token')
+    if token == None:
+        return JsonResponse({"status":"notLogin"})
+    user = User.userobj.get(userToken=token)
+    userId = user.userId
+    musicId = request.GET.get("musicId")
+    #如果我的歌单中已存在该歌曲，则不会再添加
+    myMusic = myMusicList.objects.filter(userId=userId)
+    try:
+        myMusic.get(musicId=musicId)
+        return JsonResponse({"status":"false"})
+    except myMusicList.DoesNotExist as e:
+        music = Musci.objects.get(musicId=musicId)
+        musicName = music.musicName
+        musicTime = music.musicTime
+        musicOuther = music.musicOuther
+        musicImg = music.musicImg
+        list = myMusicList.createList(userId,musicId,musicName,musicTime,musicOuther,musicImg)
+        list.save()
+        return JsonResponse({"status":"true"})
+
+def myMusic(request):
+    name = request.session.get('username', '未登录')
+    token = request.session.get('token')
+    if token == None:
+        return redirect('/login/')
+    user = User.userobj.get(userToken=token)
+    userId = user.userId
+    myList = myMusicList.objects.filter(userId=userId)
+    src = user.userImg.split("\\")[-1]
+    return render(request,"myApp/myMusic.html",{"myList":myList,'title':"我的歌单",'userName':name,'src':src})
+
+def subList(request):
+    token = request.session.get('token')
+    if token == None:
+        return JsonResponse({"status":"notLogin"})
+    user = User.userobj.get(userToken=token)
+    userId = user.userId
+    musicId = request.GET.get("musicId")
+
+    myMusic = myMusicList.objects.filter(userId=userId)
+    try:
+        music= myMusic.get(musicId=musicId)
+        music.delete()
+        return JsonResponse({"status":"true"})
+    except myMusicList.DoesNotExist as e:
+        return JsonResponse({"status":"false"})

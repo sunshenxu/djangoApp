@@ -8,6 +8,7 @@ $(document).ready(function () {
         documentScrollTop = document.documentElement.scrollTop;
     }
     scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+   scrollTop = Math.ceil(scrollTop);
     return scrollTop;
 }
 
@@ -57,12 +58,38 @@ function ajax_function() {
         // console.log(data.music);
         var j = st+1;
         for(var i=0;i<data.music.length;i++){
-            var $tr = $('<tr class="ls"><td class="order"><div class="par"><span class="num">'+j+'</span><span class="play" musicname="'+data.music[i].name+'" musicid="'+data.music[i].id+'" musicimg="'+data.music[i].img+'"><img src="/static/myApp/images/pl.jpg" title="播放"/></span></div></td><td class="songName"><a href="/index/'+data.music[i].id+'/" title="'+data.music[i].name+'"><div>'+data.music[i].name+'</div></a></td><td class="songTime"><span>'+data.music[i].time+'</span></td><td class="songer"><a href="" title="'+data.music[i].outher+'"><div>'+data.music[i].outher+'</div></a></td></tr>');
+            var $tr = $('<tr class="ls"><td class="order"><div class="par"><span class="num">'+j+'</span><span class="play" musicname="'+data.music[i].name+'" musicid="'+data.music[i].id+'" musicimg="'+data.music[i].img+'"><img src="/static/myApp/images/pl.jpg" title="播放"/></span></div></td><td class="songName"><a href="/index/'+data.music[i].id+'/" title="'+data.music[i].name+'"><div>'+data.music[i].name+'</div></a></td><td class="songTime"><span>'+data.music[i].time+'</span><span class="addList" title="加入我的歌单" musicid="'+data.music[i].id+'">+</span></td><td class="songer"><a href="" title="'+data.music[i].outher+'"><div>'+data.music[i].outher+'</div></a></td></tr>');
             $("tbody").append($tr);
             j++;
         }
     })
 }
+
+     // $("tbody").on("hover",".songTime",function () {
+     //     console.log("*****")
+     //    $(this).children(".addList").css("display",'inline-block')
+     // },function () {
+     //    $(this).children(".addList").css("display",'none')
+     // })
+    $("tbody").on("mouseover",".songTime",function () {
+        $(this).children(".addList").css("display",'inline-block')
+    });
+    $("tbody").on("mouseout",".songTime",function () {
+        $(this).children(".addList").css("display",'none')
+    });
+
+    $("tbody").on("click",".addList",function () {
+        var mid = $(this).attr("musicid");
+        $.get("/addList/",{musicId:mid},function (data) {
+            if(data.status=="notLogin"){
+				window.location.assign("/login/")
+			}else if(data.status=="false"){
+                alert("该歌曲已在歌单中！！！")
+            }else if(data.status=="true"){
+                alert("添加成功！！！")
+            }
+        });
+    });
 
 
 });

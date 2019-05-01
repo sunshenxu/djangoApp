@@ -5,7 +5,7 @@ a{
 	width: 800px;
 	margin: 0 auto;
 	border: 1.5px solid #e0e0e0;
-	margin-top: 5px;
+	/*margin-top: 5px;*/
 }
 #songhead{
 	font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif;
@@ -48,6 +48,7 @@ thead tr th{
 	width: 150px;
 	height: 35px;
 	padding-left: 8px;
+	position: relative;
 }
 .songer{
 	width: 250px;
@@ -102,4 +103,25 @@ tbody a{
 }
 tbody .ls:nth-child(odd){
 	background-color: #f7f7f7;
+}
+.addList{
+	cursor: pointer;
+	font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+	font-weight: bold;
+	font-size: 25px;
+	margin-left: 10px;
+	display: none;
+	position: absolute;
+	top: 4px;
+}
+
+.subList{
+	cursor: pointer;
+	font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+	font-weight: bold;
+	font-size: 25px;
+	margin-left: 10px;
+	display: none;
+	position: absolute;
+	top: 4px;
 }

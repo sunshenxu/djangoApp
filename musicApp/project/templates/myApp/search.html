@@ -2,7 +2,7 @@
 {% load static from staticfiles %}
 {% block linkScript %}
     <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/index.css' %}">
-{#    <script src="{% static 'myApp/js/search.js' %}" type="text/javascript" charset="utf-8"></script>#}
+    <script src="{% static 'myApp/js/search.js' %}" type="text/javascript" charset="utf-8"></script>
 {% endblock linkScript %}
 
 {% block main %}
@@ -34,7 +34,7 @@
 							<td class="songName"><a href="/index/{{ item.musicId }}/" title="{{ item.musicName }}"><div>{{ item.musicName }}</div></a></td>
 							<td class="songTime"><span>
 								{{ item.musicTime }}
-							</span></td>
+							</span><span class="addList" title="加入我的歌单" musicid="{{ item.musicId }}">+</span></td>
 							<td class="songer"><a href="" title=" {{ item.musicOuther }}"><div>{{ item.musicOuther }}</div></a></td>
 						</tr>
                     {% endfor %}

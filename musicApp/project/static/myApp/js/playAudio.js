@@ -51,7 +51,7 @@ $(function(){
 	// console.log(audioFn.song);
 
 	/* 当前播放曲目的对象 */
-//	console.log(audioFn.audio);
+	// console.log(audioFn.audio);
 
 	//实现播放功能
     $("tbody").on("click",".play",function () {
@@ -59,7 +59,12 @@ $(function(){
 		var id = $(this).attr("musicid");
 		var src = 'http://music.163.com/song/media/outer/url?id='+id+'.mp3';
 		var img = $(this).attr("musicimg");
-
+		var list = audioFn.song;
+		for(var i=0;i<list.length;i++){
+			if(list[i]['src']==src){
+				list.splice(i,1);
+			}
+		}
         audioFn.newSong({
 		'cover' : img,
 		'src' : src,
@@ -72,7 +77,12 @@ $(function(){
 		var id1 = $(this).attr("musicid");
 		var src1 = 'http://music.163.com/song/media/outer/url?id='+id1+'.mp3';
 		var img1 = $(this).attr("musicimg");
-
+		var list = audioFn.song;
+		for(var i=0;i<list.length;i++){
+			if(list[i]['src']==src1){
+				list.splice(i,1);
+			}
+		}
         audioFn.newSong({
 		'cover' : img1,
 		'src' : src1,
