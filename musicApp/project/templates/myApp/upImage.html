@@ -1,14 +1,52 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>上传头像</title>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>#}
+{#    <script src="{% static 'myApp/js/jquery-2.1.1.js'%}"></script>#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/return.css'%}"/>#}
+{#    <script src="{% static 'myApp/js/iscroll-zoom.js'%}"></script>#}
+{#    <script src="{% static 'myApp/js/hammer.js' %}"></script>#}
+{#    <script src="{% static 'myApp/js/lrz.all.bundle.js'%}"></script>#}
+{#    <script src="{% static 'myApp/js/jquery.photoClip.min.js'%}"></script>#}
+{#    <script src="{% static 'myApp/js/upImage.js'%}"></script>#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/upImage.css'%}"/>#}
 </head>
 <body>
-<a href="/index/">返回</a> <br>
+<div class="flip">
+    <a href="/index/">
+        <div class="front">返回</div>
+        <div class="back">返回</div>
+    </a>
+</div>
 <form action="/changeImage/" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     上传头像：<input type="file" name="userImg"> <br>
+{#    <p class="upload_view" id="view"></p>#}
+{#    <button class="open">修改头像</button>#}
+{#    <div id="upload_D">#}
+{#			<div class="upload_frame">#}
+{#				<div class="upload_title">#}
+{#					<span class="upload_title_left">请选择图片</span>#}
+{#					<span class="upload_title_right"><img src="{% static 'myApp/images/x.jpg'%}"></span>#}
+{#				</div>#}
+{#				<div class="upload_fileBtn">#}
+{#					图片上传#}
+{#					<input type="file" id="file" name="userImg"/>#}
+{#					<label for="file">选择图片</label>#}
+{#				</div>#}
+{#				<div class="upload_content">#}
+{#					<div id="clipArea"></div>#}
+{#					<div class="upload_content_right">#}
+{#						<p class="upload_view"></p>#}
+{#						<button id="clipBtn">保存修改</button>#}
+{#						<label for="file">重新选图片</label>#}
+{#					</div>#}
+{#				</div>#}
+{#			</div>#}
+{#		</div>#}
     <input type="submit" value="提交">
 </form>
 </body>

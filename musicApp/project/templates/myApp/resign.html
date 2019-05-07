@@ -7,9 +7,16 @@
         {% load static from staticfiles %}
 <script src="{% static 'myApp/js/jquery-3.1.1.min.js'%}" type="text/javascript" charset="utf-8"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/login.css'%}"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/return.css'%}"/>
 	</head>
 	<body>
-		<a href="/index/">返回</a> <br>
+    <div class="flip">
+    		<a href="/index/">
+        		<div class="front">返回</div>
+        		<div class="back">返回</div>
+    		</a>
+    </div>
+{#		<a href="/index/">返回</a> <br>#}
 		<form action="/resign/" method="post">
             {% csrf_token %}
 			<div id="register" class="t_register clearfix">

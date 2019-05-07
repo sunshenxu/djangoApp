@@ -2,11 +2,44 @@
 {% load static from staticfiles %}
 {% block linkScript %}
     <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/userInfo.css' %}">
+    <script src="{% static 'myApp/js/jquery-2.1.1.js'%}"></script>
+    <script src="{% static 'myApp/js/iscroll-zoom.js'%}"></script>
+    <script src="{% static 'myApp/js/hammer.js' %}"></script>
+    <script src="{% static 'myApp/js/lrz.all.bundle.js'%}"></script>
+    <script src="{% static 'myApp/js/jquery.photoClip.min.js'%}"></script>
+    <script src="{% static 'myApp/js/upImage.js'%}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'myApp/css/upImage.css'%}"/>
 {% endblock linkScript %}
 
 {% block main %}
+
     <div class="info">
-        <div class="img"><img src="/static/media/{{ src }}" title="头像"></div>
+{#        <div class="img"><img src="/static/media/{{ src }}" title="头像"></div>#}
+        <div class="img"><img src="/static/media/{{ src }}" id="view" title="修改头像"/></div>
+        <form action="/changeImage/" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="upload_D">
+			<div class="upload_frame">
+				<div class="upload_title">
+					<span class="upload_title_left">请选择图片</span>
+					<span class="upload_title_right"><img src="{% static 'myApp/images/x.jpg'%}"></span>
+				</div>
+				<div class="upload_fileBtn">
+					图片上传
+					<input type="file" id="file" name="userImg"/>
+					<label for="file" class="cur">选择图片</label>
+				</div>
+				<div class="upload_content">
+					<div id="clipArea"></div>
+					<div class="upload_content_right">
+						<p class="upload_view"></p>
+						<button id="clipBtn" type="submit" class="cur">保存修改</button>
+						<label for="file" class="cur">重新选图片</label>
+					</div>
+				</div>
+			</div>
+		</div>
+        </form>
         <h2>用户名：{{ user.userName }}</h2>
         <h2>等级：{{ user.userRank }}</h2>
     </div>
