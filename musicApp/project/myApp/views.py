@@ -37,10 +37,12 @@ def index(request):
     music = Musci.objects.all()[start:start+limit]
     token = request.session.get('token')
     if token==None:     #这里应该用token值验证登录
-        return render(request, 'myApp/index.html', {'title': "主页", 'userName': name, "music": music,"src":"default.png"})
+        history = request.session.get("historyList", "None")
+        return render(request, 'myApp/index.html', {'title': "主页", 'userName': name, "music": music,"src":"default.png","history":history})
     user = User.userobj.get(userToken=token)
     src = user.userImg.split("\\")[-1]
-    return render(request,'myApp/index.html',{'title':"主页",'userName':name,"music":music,"src":src})
+    history = request.session.get("historyList","None")
+    return render(request,'myApp/index.html',{'title':"主页",'userName':name,"music":music,"src":src,"history":history})
 
 @csrf_exempt
 def login(request):
@@ -114,7 +116,8 @@ def info(request,id):
         music = Musci.objects.get(musicId=id)
         user = User.userobj.get(userToken=token)    #可以使用token值获取该用户
         src = user.userImg.split("\\")[-1]
-        return render(request,'myApp/info.html',{'title':"歌词",'userName':name,'music':music,'src':src})
+        history = request.session.get("historyList")
+        return render(request,'myApp/info.html',{'title':"歌词",'userName':name,'music':music,'src':src,"history":history})
     except Musci.DoesNotExist as e:
         return HttpResponse("歌曲不存在")
 
@@ -201,3 +204,8 @@ def subList(request):
     except myMusicList.DoesNotExist as e:
         return JsonResponse({"status":"false"})
 
+@csrf_exempt
+def history(request):
+    historyList = request.POST.get("historyList")
+    request.session["historyList"] = historyList
+    return JsonResponse({"status":"True"})

@@ -19,4 +19,6 @@ urlpatterns = [
     url(r'^addList/$',views.addList),
     url(r'^subList/$',views.subList),
     url(r'^myMusic/$',views.myMusic),
+    url(r'^history/$',views.history),
+
 ]
